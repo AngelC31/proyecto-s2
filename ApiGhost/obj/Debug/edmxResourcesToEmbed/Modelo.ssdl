@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GhostGymApiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="Id_Categoria" />
+    </Key>
+    <Property Name="Id_Categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Tipo" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Duracion" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Precio" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DetEjercicio">
+    <Key>
+      <PropertyRef Name="Id_Detalle" />
+    </Key>
+    <Property Name="Id_Detalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdCategoria1" Type="int" />
+    <Property Name="IdRutina1" Type="int" />
+    <Property Name="IdInstructor1" Type="int" />
+  </EntityType>
+  <EntityType Name="Horario">
+    <Key>
+      <PropertyRef Name="Id_Horario" />
+    </Key>
+    <Property Name="Id_Horario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Turno" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Instructor">
+    <Key>
+      <PropertyRef Name="Id_Instructor" />
+    </Key>
+    <Property Name="Id_Instructor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NombreI" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="ApellidoI" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="IdHorario" Type="int" />
+  </EntityType>
+  <EntityType Name="Monitoreo1">
+    <Key>
+      <PropertyRef Name="RowNumber" />
+    </Key>
+    <Property Name="RowNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventClass" Type="int" />
+    <Property Name="TextData" Type="ntext" />
+    <Property Name="ApplicationName" Type="nvarchar" MaxLength="128" />
+    <Property Name="NTUserName" Type="nvarchar" MaxLength="128" />
+    <Property Name="LoginName" Type="nvarchar" MaxLength="128" />
+    <Property Name="CPU" Type="int" />
+    <Property Name="Reads" Type="bigint" />
+    <Property Name="Writes" Type="bigint" />
+    <Property Name="Duration" Type="bigint" />
+    <Property Name="ClientProcessID" Type="int" />
+    <Property Name="SPID" Type="int" />
+    <Property Name="StartTime" Type="datetime" />
+    <Property Name="EndTime" Type="datetime" />
+    <Property Name="BinaryData" Type="image" />
+  </EntityType>
+  <EntityType Name="Rutinas">
+    <Key>
+      <PropertyRef Name="Id_Rutina" />
+    </Key>
+    <Property Name="Id_Rutina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nivel" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Enfoque" Type="varchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Suscripcion">
+    <Key>
+      <PropertyRef Name="Id_Suscripcion" />
+    </Key>
+    <Property Name="Id_Suscripcion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdUsuario" Type="int" Nullable="false" />
+    <Property Name="IdCategoria" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id_Usuario" />
+    </Key>
+    <Property Name="Id_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Apellido" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Correo" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Contra" Type="varbinary" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_IdCategoria">
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+    <End Role="Suscripcion" Type="Self.Suscripcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="Id_Categoria" />
+      </Principal>
+      <Dependent Role="Suscripcion">
+        <PropertyRef Name="IdCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdCategoria1">
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
+    <End Role="DetEjercicio" Type="Self.DetEjercicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="Id_Categoria" />
+      </Principal>
+      <Dependent Role="DetEjercicio">
+        <PropertyRef Name="IdCategoria1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdHorario">
+    <End Role="Horario" Type="Self.Horario" Multiplicity="0..1" />
+    <End Role="Instructor" Type="Self.Instructor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Horario">
+        <PropertyRef Name="Id_Horario" />
+      </Principal>
+      <Dependent Role="Instructor">
+        <PropertyRef Name="IdHorario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdInstructor1">
+    <End Role="Instructor" Type="Self.Instructor" Multiplicity="0..1" />
+    <End Role="DetEjercicio" Type="Self.DetEjercicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instructor">
+        <PropertyRef Name="Id_Instructor" />
+      </Principal>
+      <Dependent Role="DetEjercicio">
+        <PropertyRef Name="IdInstructor1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdRutina1">
+    <End Role="Rutinas" Type="Self.Rutinas" Multiplicity="0..1" />
+    <End Role="DetEjercicio" Type="Self.DetEjercicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rutinas">
+        <PropertyRef Name="Id_Rutina" />
+      </Principal>
+      <Dependent Role="DetEjercicio">
+        <PropertyRef Name="IdRutina1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdUsuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Suscripcion" Type="Self.Suscripcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id_Usuario" />
+      </Principal>
+      <Dependent Role="Suscripcion">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GhostGymApiModelStoreContainer">
+    <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DetEjercicio" EntityType="Self.DetEjercicio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Horario" EntityType="Self.Horario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Instructor" EntityType="Self.Instructor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Monitoreo1" EntityType="Self.Monitoreo1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rutinas" EntityType="Self.Rutinas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Suscripcion" EntityType="Self.Suscripcion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_IdCategoria" Association="Self.FK_IdCategoria">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Suscripcion" EntitySet="Suscripcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdCategoria1" Association="Self.FK_IdCategoria1">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="DetEjercicio" EntitySet="DetEjercicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdHorario" Association="Self.FK_IdHorario">
+      <End Role="Horario" EntitySet="Horario" />
+      <End Role="Instructor" EntitySet="Instructor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdInstructor1" Association="Self.FK_IdInstructor1">
+      <End Role="Instructor" EntitySet="Instructor" />
+      <End Role="DetEjercicio" EntitySet="DetEjercicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdRutina1" Association="Self.FK_IdRutina1">
+      <End Role="Rutinas" EntitySet="Rutinas" />
+      <End Role="DetEjercicio" EntitySet="DetEjercicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdUsuario" Association="Self.FK_IdUsuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Suscripcion" EntitySet="Suscripcion" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

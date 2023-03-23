@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d5b06739971b4b0f9733f5e5806541e9" Name="Diagram1">
+        <EntityTypeShape EntityType="GhostGymApiModel.Categoria" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="GhostGymApiModel.DetEjercicio" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GhostGymApiModel.Horario" Width="1.5" PointX="1.5" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GhostGymApiModel.Instructor" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GhostGymApiModel.Monitoreo1" Width="1.5" PointX="5.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GhostGymApiModel.Rutinas" Width="1.5" PointX="0.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GhostGymApiModel.Suscripcion" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GhostGymApiModel.Usuario" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="GhostGymApiModel.FK_IdCategoria" ManuallyRouted="false" />
+        <AssociationConnector Association="GhostGymApiModel.FK_IdCategoria1" ManuallyRouted="false" />
+        <AssociationConnector Association="GhostGymApiModel.FK_IdInstructor1" ManuallyRouted="false" />
+        <AssociationConnector Association="GhostGymApiModel.FK_IdRutina1" ManuallyRouted="false" />
+        <AssociationConnector Association="GhostGymApiModel.FK_IdHorario" ManuallyRouted="false" />
+        <AssociationConnector Association="GhostGymApiModel.FK_IdUsuario" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GhostGymApiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="Id_Categoria" />
+    </Key>
+    <Property Name="Id_Categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Duracion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Precio" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Suscripcion" Relationship="Self.FK_IdCategoria" FromRole="Categoria" ToRole="Suscripcion" />
+    <NavigationProperty Name="DetEjercicio" Relationship="Self.FK_IdCategoria1" FromRole="Categoria" ToRole="DetEjercicio" />
+  </EntityType>
+  <EntityType Name="DetEjercicio">
+    <Key>
+      <PropertyRef Name="Id_Detalle" />
+    </Key>
+    <Property Name="Id_Detalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdCategoria1" Type="Int32" />
+    <Property Name="IdRutina1" Type="Int32" />
+    <Property Name="IdInstructor1" Type="Int32" />
+    <NavigationProperty Name="Categoria" Relationship="Self.FK_IdCategoria1" FromRole="DetEjercicio" ToRole="Categoria" />
+    <NavigationProperty Name="Instructor" Relationship="Self.FK_IdInstructor1" FromRole="DetEjercicio" ToRole="Instructor" />
+    <NavigationProperty Name="Rutinas" Relationship="Self.FK_IdRutina1" FromRole="DetEjercicio" ToRole="Rutinas" />
+  </EntityType>
+  <EntityType Name="Horario">
+    <Key>
+      <PropertyRef Name="Id_Horario" />
+    </Key>
+    <Property Name="Id_Horario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Turno" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Instructor" Relationship="Self.FK_IdHorario" FromRole="Horario" ToRole="Instructor" />
+  </EntityType>
+  <EntityType Name="Instructor">
+    <Key>
+      <PropertyRef Name="Id_Instructor" />
+    </Key>
+    <Property Name="Id_Instructor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreI" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ApellidoI" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdHorario" Type="Int32" />
+    <NavigationProperty Name="DetEjercicio" Relationship="Self.FK_IdInstructor1" FromRole="Instructor" ToRole="DetEjercicio" />
+    <NavigationProperty Name="Horario" Relationship="Self.FK_IdHorario" FromRole="Instructor" ToRole="Horario" />
+  </EntityType>
+  <EntityType Name="Monitoreo1">
+    <Key>
+      <PropertyRef Name="RowNumber" />
+    </Key>
+    <Property Name="RowNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventClass" Type="Int32" />
+    <Property Name="TextData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicationName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="NTUserName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="LoginName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CPU" Type="Int32" />
+    <Property Name="Reads" Type="Int64" />
+    <Property Name="Writes" Type="Int64" />
+    <Property Name="Duration" Type="Int64" />
+    <Property Name="ClientProcessID" Type="Int32" />
+    <Property Name="SPID" Type="Int32" />
+    <Property Name="StartTime" Type="DateTime" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Precision="3" />
+    <Property Name="BinaryData" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Rutinas">
+    <Key>
+      <PropertyRef Name="Id_Rutina" />
+    </Key>
+    <Property Name="Id_Rutina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nivel" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Enfoque" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="DetEjercicio" Relationship="Self.FK_IdRutina1" FromRole="Rutinas" ToRole="DetEjercicio" />
+  </EntityType>
+  <EntityType Name="Suscripcion">
+    <Key>
+      <PropertyRef Name="Id_Suscripcion" />
+    </Key>
+    <Property Name="Id_Suscripcion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" />
+    <Property Name="IdCategoria" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Categoria" Relationship="Self.FK_IdCategoria" FromRole="Suscripcion" ToRole="Categoria" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_IdUsuario" FromRole="Suscripcion" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id_Usuario" />
+    </Key>
+    <Property Name="Id_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Correo" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Contra" Type="Binary" MaxLength="255" FixedLength="false" Nullable="false" />
+    <NavigationProperty Name="Suscripcion" Relationship="Self.FK_IdUsuario" FromRole="Usuario" ToRole="Suscripcion" />
+  </EntityType>
+  <Association Name="FK_IdCategoria">
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+    <End Role="Suscripcion" Type="Self.Suscripcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="Id_Categoria" />
+      </Principal>
+      <Dependent Role="Suscripcion">
+        <PropertyRef Name="IdCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdCategoria1">
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
+    <End Role="DetEjercicio" Type="Self.DetEjercicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="Id_Categoria" />
+      </Principal>
+      <Dependent Role="DetEjercicio">
+        <PropertyRef Name="IdCategoria1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdInstructor1">
+    <End Role="Instructor" Type="Self.Instructor" Multiplicity="0..1" />
+    <End Role="DetEjercicio" Type="Self.DetEjercicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instructor">
+        <PropertyRef Name="Id_Instructor" />
+      </Principal>
+      <Dependent Role="DetEjercicio">
+        <PropertyRef Name="IdInstructor1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdRutina1">
+    <End Role="Rutinas" Type="Self.Rutinas" Multiplicity="0..1" />
+    <End Role="DetEjercicio" Type="Self.DetEjercicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rutinas">
+        <PropertyRef Name="Id_Rutina" />
+      </Principal>
+      <Dependent Role="DetEjercicio">
+        <PropertyRef Name="IdRutina1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdHorario">
+    <End Role="Horario" Type="Self.Horario" Multiplicity="0..1" />
+    <End Role="Instructor" Type="Self.Instructor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Horario">
+        <PropertyRef Name="Id_Horario" />
+      </Principal>
+      <Dependent Role="Instructor">
+        <PropertyRef Name="IdHorario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IdUsuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Suscripcion" Type="Self.Suscripcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="Id_Usuario" />
+      </Principal>
+      <Dependent Role="Suscripcion">
+        <PropertyRef Name="IdUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GhostGymApiEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+    <EntitySet Name="DetEjercicio" EntityType="Self.DetEjercicio" />
+    <EntitySet Name="Horario" EntityType="Self.Horario" />
+    <EntitySet Name="Instructor" EntityType="Self.Instructor" />
+    <EntitySet Name="Monitoreo1" EntityType="Self.Monitoreo1" />
+    <EntitySet Name="Rutinas" EntityType="Self.Rutinas" />
+    <EntitySet Name="Suscripcion" EntityType="Self.Suscripcion" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK_IdCategoria" Association="Self.FK_IdCategoria">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Suscripcion" EntitySet="Suscripcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdCategoria1" Association="Self.FK_IdCategoria1">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="DetEjercicio" EntitySet="DetEjercicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdInstructor1" Association="Self.FK_IdInstructor1">
+      <End Role="Instructor" EntitySet="Instructor" />
+      <End Role="DetEjercicio" EntitySet="DetEjercicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdRutina1" Association="Self.FK_IdRutina1">
+      <End Role="Rutinas" EntitySet="Rutinas" />
+      <End Role="DetEjercicio" EntitySet="DetEjercicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdHorario" Association="Self.FK_IdHorario">
+      <End Role="Horario" EntitySet="Horario" />
+      <End Role="Instructor" EntitySet="Instructor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IdUsuario" Association="Self.FK_IdUsuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Suscripcion" EntitySet="Suscripcion" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

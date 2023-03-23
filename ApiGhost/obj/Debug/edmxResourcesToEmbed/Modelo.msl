@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GhostGymApiModelStoreContainer" CdmEntityContainer="GhostGymApiEntities">
+    <EntitySetMapping Name="Categoria">
+      <EntityTypeMapping TypeName="GhostGymApiModel.Categoria">
+        <MappingFragment StoreEntitySet="Categoria">
+          <ScalarProperty Name="Id_Categoria" ColumnName="Id_Categoria" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Duracion" ColumnName="Duracion" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetEjercicio">
+      <EntityTypeMapping TypeName="GhostGymApiModel.DetEjercicio">
+        <MappingFragment StoreEntitySet="DetEjercicio">
+          <ScalarProperty Name="Id_Detalle" ColumnName="Id_Detalle" />
+          <ScalarProperty Name="IdCategoria1" ColumnName="IdCategoria1" />
+          <ScalarProperty Name="IdRutina1" ColumnName="IdRutina1" />
+          <ScalarProperty Name="IdInstructor1" ColumnName="IdInstructor1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Horario">
+      <EntityTypeMapping TypeName="GhostGymApiModel.Horario">
+        <MappingFragment StoreEntitySet="Horario">
+          <ScalarProperty Name="Id_Horario" ColumnName="Id_Horario" />
+          <ScalarProperty Name="Turno" ColumnName="Turno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Instructor">
+      <EntityTypeMapping TypeName="GhostGymApiModel.Instructor">
+        <MappingFragment StoreEntitySet="Instructor">
+          <ScalarProperty Name="Id_Instructor" ColumnName="Id_Instructor" />
+          <ScalarProperty Name="NombreI" ColumnName="NombreI" />
+          <ScalarProperty Name="ApellidoI" ColumnName="ApellidoI" />
+          <ScalarProperty Name="IdHorario" ColumnName="IdHorario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Monitoreo1">
+      <EntityTypeMapping TypeName="GhostGymApiModel.Monitoreo1">
+        <MappingFragment StoreEntitySet="Monitoreo1">
+          <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+          <ScalarProperty Name="EventClass" ColumnName="EventClass" />
+          <ScalarProperty Name="TextData" ColumnName="TextData" />
+          <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+          <ScalarProperty Name="NTUserName" ColumnName="NTUserName" />
+          <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+          <ScalarProperty Name="CPU" ColumnName="CPU" />
+          <ScalarProperty Name="Reads" ColumnName="Reads" />
+          <ScalarProperty Name="Writes" ColumnName="Writes" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="ClientProcessID" ColumnName="ClientProcessID" />
+          <ScalarProperty Name="SPID" ColumnName="SPID" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="BinaryData" ColumnName="BinaryData" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rutinas">
+      <EntityTypeMapping TypeName="GhostGymApiModel.Rutinas">
+        <MappingFragment StoreEntitySet="Rutinas">
+          <ScalarProperty Name="Id_Rutina" ColumnName="Id_Rutina" />
+          <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+          <ScalarProperty Name="Enfoque" ColumnName="Enfoque" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suscripcion">
+      <EntityTypeMapping TypeName="GhostGymApiModel.Suscripcion">
+        <MappingFragment StoreEntitySet="Suscripcion">
+          <ScalarProperty Name="Id_Suscripcion" ColumnName="Id_Suscripcion" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+          <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuario">
+      <EntityTypeMapping TypeName="GhostGymApiModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuario">
+          <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Contra" ColumnName="Contra" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
